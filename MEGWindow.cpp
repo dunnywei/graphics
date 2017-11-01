@@ -15,9 +15,21 @@ void MeGlwindow::initalizaeGL()
 
 	GLfloat verts[]=
 	{
+		/*
 		+0.0f, +100.0f,
 		-100.0f,-100.0f,
 		+100.0f,-100.0f,
+		*/
+		
+		+0.0f,+0.0f,
+		+1.0f,+1.0f,
+        -1.0f,+1,0f,
+
+        -1.0f,-1,0f,
+        +1.0f,+0.0f,
+        -1.0f,-1.0f,
+        
+
 	};
 	GLuint mybufferID;
 	glGenBuffers(1, &mybufferID);
@@ -35,7 +47,9 @@ void MeGlwindow::paintGL()
 	QSize viewport_size = size();
 	glViewport(0, 0, viewport_size.width(), viewport_size.height());
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
 
 	
 	//glClearColor(1, 0, 0, 1);
