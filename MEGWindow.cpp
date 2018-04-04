@@ -16,28 +16,58 @@ void MeGlwindow::initalizaeGL()
 	GLfloat verts[]=
 	{
 		/*
-		+0.0f, +100.0f,
+		+0.0f, +100.0f, //First group vertices for making the 1st triangle
 		-100.0f,-100.0f,
 		+100.0f,-100.0f,
-		*/
-		
-		+0.0f,+0.0f,
-		+1.0f,+1.0f,
-        -1.0f,+1,0f,
 
-        -1.0f,-1,0f,
-        +1.0f,+0.0f,
+        +0.0f,+0.0f,//problem? too many redundency of +0.0f,+0.0f so the solution is indeces,index buffers or element array  
         -1.0f,-1.0f,
+        +1.0f,-1.0f,
+        */
+        //Start of video 7
+        +0.0f, +100.0f, //0
+		-100.0f,-100.0f,//1
+		+100.0f,-100.0f,  //2
+        -1.0f,-1.0f,//3
+        +1.0f,-1.0f,//4
+        //So 0|1|2 makes 1st triangle and 0|3|4 make 2nd triangle
+        //end of video 7
         
 
 	};
+	//The order of verts matter
+	/*
 	GLuint mybufferID;
 	glGenBuffers(1, &mybufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, mybufferID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);//first attribute
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(0, 
+                          2, //Two floating points make one vetrices 
+                          GL_FLOAT, GL_FALSE, 0, 0);
+    */
+	//start of video 7
+    
+    GLuint vertexBufferID;
+	glGenBuffers(1, &vertexBufferID);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);//first attribute
+	glVertexAttribPointer(0, 
+                          2, //Two floating points make one vetrices 
+                          GL_FLOAT, GL_FALSE, 0, 0);
+
+    Glushort indices[]= {0,1,2,0,3,4};
+    GLuint indexBufferID;
+    glGenBuffers(1,&indexBufferID); //starts here at 6:20
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
+    //Video 7 @8:25 important concept for bining GL_ELEMENT_ARRAY_BUFFER and Buufers
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices),indices,GL_STATIC_DRAW );
+
+    //it is an integer and unsign
+	//end of video 7
 	
 
 
@@ -48,51 +78,14 @@ void MeGlwindow::paintGL()
 	glViewport(0, 0, viewport_size.width(), viewport_size.height());
 
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	//start of video 7
+	//glDrawArrays(GL_TRIANGLES, 0, 6);//Every three vertices make triangle
+	glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0);
+    //end of video 7
 
 
 	
-	//glClearColor(1, 0, 0, 1);
-	//glClear(GL_COLOR_BUFFER_BIT);
 	
-	//glViewport(0, 0, width(), height());
-	/*
-	QSize viewport_size = size();
-	glViewport(0, 0, viewport_size.width(), viewport_size.height());
-
-	
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glFrustum(-1, 1, -1, 1, 5, 7); // near and far match your triangle Z distance
-	glMatrixMode(GL_MODELVIEW);
-
-
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-	*/
-	/*
-	QSize viewport_size = size();
-	glViewport(0, 0, viewport_size.width(), viewport_size.height());
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glFrustum(-1, 1, -1, 1, 5, 7); // near and far match your triangle Z distance
-
-	glMatrixMode(GL_MODELVIEW);
-	
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
-	glTranslatef(-1.5f, 0.0f, -6.0f);
-
-	glBegin(GL_TRIANGLES);
-	glVertex3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(-1.0f, -1.0f, 0.0f);
-	glVertex3f(1.0f, -1.0f, 0.0f);
-	glEnd();
-	
-	setAutoBufferSwap(true);
-	
-	*/
 	
 }
 
