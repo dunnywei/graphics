@@ -16,13 +16,35 @@ void MeGlwindow::initalizaeGL()
 	GLfloat verts[]=
 	{
 		/*
-		+0.0f, +100.0f, //First group vertices for making the 1st triangle
-		-100.0f,-100.0f,
-		+100.0f,-100.0f,
+		Lec 10(01:29)->Shader is a program executed on the graphic card
+		Currently, the foloinwg code is executed on the CPU
+		->Shader goes to the graphic pipeline.
+		->We need to customerize the piplelie
+        ->(02:32) Shader's responsiblity is to shade the pixel
+        ->(02:57) Vertex shader and fragment shader(pixel) (3:31) 
+        ->(03:55) While hitting glDrawElements, Opengl will take its vertex into vertex shader in order
+        -> Vertex shader has to output two things:positions on the screen and any other thing(custom data)(4:26)
+        ->Once the OpenGl has the position (3 vertices) making one triangle
+        ->(4:35) If the OpenGL wishes to draw the triangle, it has to fill every single pixes 
+        //inside that triangle
+        -> (4:55) Every single pixel(framgent), OpenGl has to execute fragment shader
+        -> (5:13) For the vertex shader, it needs to run 5 times
+        -> (5:22) for the fragment shader, it needs to run several times depending on 
+        # of framents in the triangle
+        ->(5:31) Postion data from OpenGl(GPU)
+        ->(5:38) The custom data comes back in to the fragment shader
+        ->(5:40) The GPU interpolate the data from vertex to vertex
+        ->(5:51) The triangle (left is blue, down is red) so it will blend
+        from blue to red eventually from top to buttom
+        -> (6:18) We need to write the fragment shader which will run the CPU
+        at the end
+        -> (6:20) The only thing fragment shader has to output is R,G,B color
+        -> (6:35) We know who much does each RGB color applies to each fragment
+        in every single pixel
+        -> (7:18) GPU is super powerful since they do in parallel. It means GPU is
+        good to do the floating point arithmatic including vector math
 
-        +0.0f,+0.0f,//problem? too many redundency of +0.0f,+0.0f so the solution is indeces,index buffers or element array  
-        -1.0f,-1.0f,
-        +1.0f,-1.0f,
+       ->(7:48) GPU load several vertex(in our case verts[]) in parallel
         */
         //Start of video 7
         +0.0f, +0.0f, //0
