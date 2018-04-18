@@ -2,16 +2,16 @@
 #include <QtOpenGl\qglwidget>
 #include "MEGWindow.h"
 
+extern const char* vertexShaderCode;
+
 MeGlwindow::MeGlwindow(MeGlwindow *parent) :QGLWidget(parent)
 {
 	swapBuffers();
 
 }
 
-void MeGlwindow::initalizaeGL()
+void sendDataToOpenGL()
 {
-	
-	glewInit();
 
 	GLfloat verts[]=
 	{
@@ -38,13 +38,15 @@ void MeGlwindow::initalizaeGL()
         from blue to red eventually from top to buttom
         -> (6:18) We need to write the fragment shader which will run the CPU
         at the end
-        -> (6:20) The only thing fragment shader has to output is R,G,B color
+        -> (6:20) The only thing fragment shader has to output is R,G,B,A color
         -> (6:35) We know who much does each RGB color applies to each fragment
         in every single pixel
         -> (7:18) GPU is super powerful since they do in parallel. It means GPU is
         good to do the floating point arithmatic including vector math
 
        ->(7:48) GPU load several vertex(in our case verts[]) in parallel
+        */
+        /*
         */
         //Start of video 7
         +0.0f, +0.0f, //0
@@ -113,7 +115,19 @@ void MeGlwindow::initalizaeGL()
 
     //it is an integer and unsign
 	//end of video 7
+}
+
+void installShader()
+{
+
+}
+
+void MeGlwindow::initalizaeGL()
+{
 	
+	glewInit();
+    sendDataToOpenGL();
+	installShader();
 
 
 }
