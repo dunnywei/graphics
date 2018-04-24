@@ -3,6 +3,7 @@
 #include "MEGWindow.h"
 
 extern const char* vertexShaderCode;
+extern const char* fragmentShaderCode;
 
 MeGlwindow::MeGlwindow(MeGlwindow *parent) :QGLWidget(parent)
 {
@@ -119,7 +120,27 @@ void sendDataToOpenGL()
 
 void installShader()
 {
+   //lec12
+   /*
+   take the string from MeShaderCode.cpp and compile them
+   */
+	GLuint vertexShaderID=glCreateShader("GL_VERTEX_SHADER");
+	GLuint fragmentShaderID=glCreateShader("GL_FRAGMENT_SHADER");
+    const char* adapter[1];
+    adapter[0]=vertexShaderCode;
+	glShaderSource(vertexShaderID,1,adapter,0);
+	adapter[0]=fragmentShaderID;
+	glShaderSource(fragmentShaderID,1,adapter,0);
 
+    glCompileShader(vertexShaderID);
+    glCompileShader(fragmentShaderID);
+
+    GLuint programID=glCreateProgram();
+    glAttachShader(programID,vertexShaderID);
+    glAttachShader(programID,fragmentShaderID);
+    gllinkProgram(programID);
+
+    glUseProgram(programID);
 }
 
 void MeGlwindow::initalizaeGL()
