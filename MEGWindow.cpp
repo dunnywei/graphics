@@ -51,15 +51,13 @@ void sendDataToOpenGL()
         */
         //Start of video 7
         +0.0f, +0.0f, //0
-        +1.0f,+0,0f,+0.0f, //For 0 vertex's color in RGB lec 9
-		+1.0f,+1.0f,//1
-		+1.0f,+0.0f,+0.0f, //For 1 vertex's color in RGB lec 9
-		-1.0f,+1.0f,  //2
-		+1.0f,+0.0f,+0.0f, //For 2 vertex's color in RGB lec 9
-        -1.0f,-1.0f,//3
-        +1.0f,+0.0f,+0.0f, //For 3 vertex's color in RGB lec 9  
-        +1.0f,-1.0f,//4
-        +1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
+        +1.0f,+0.0f,+0.0f, //For 0 vertex's color in RGB lec 9
+        
+        -1.0f,-1.0f,//1
+        +0.0f,+1.0f,+0.0f, //For 3 vertex's color in RGB lec 9  
+        
+        +1.0f,-1.0f,//2
+        +1.0f,+0.0f,+1.0f, //For 4 vertex's color in RGB lec 9
 
         //So 0|1|2 makes 1st triangle and 0|3|4 make 2nd triangle
         //end of video 7
@@ -106,7 +104,7 @@ void sendDataToOpenGL()
 	glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,sizeof(float)*5,(char*)(sizeof(float)*2);//->Lecture 9(6:44)
 
 
-    Glushort indices[]= {0,1,2,0,3,4};
+    Glushort indices[]= {0,1,2};
     //can use GLuint for 32 bits or GLubyte for 8bit, Glushort gives 16 bits
     GLuint indexBufferID;
     glGenBuffers(1,&indexBufferID);
