@@ -1,8 +1,9 @@
 const char* vertexShaderCode=
 "#version 430\r\n"
-""
-"in layout(location=0) vec2 position;"
-"in layout(location=1) vec3 vertexColor;"
+"\n"
+"in layout(location=0) vec2 position;\n"
+"//in layout(location=1) vec3 vertexColor;\n"
+"in location(layout=1) vec3 vertexColor;\n"
 ""
 "out vec3 theColor;"
 "void main()"
@@ -24,17 +25,3 @@ const char* fragmentShaderCode=
    ""
    "daColor=vec4(theColor,1.0);"
 "}";
-
-//Lecture_14
-//how many times does vertex shader execute? (00:36)
-//Three times since there are only three vertexes (0:45)
-//How many times does fragement shader execute? (00:53)
-//There are a lot of fragments (pixels) required to draw (1:11)
-//For now we assume fragments and pixels are the same
-//how does hardware know what value to pass to the fragment shader(1:36)
-//For the triangle, we have top bue,left buttom green and right buttom red (1:56)
-//hardware will interpolate between two points. There is a video named lerp for linear interplation(2:03)
-//blends=interpolate between the value (02:12) 
-//When we send the data out of the vertex shader, the hardware do the interpolation(blend) (2:28)
-//Should watch lerp video fro jamie king (3:49)
-//

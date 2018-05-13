@@ -116,6 +116,30 @@ void sendDataToOpenGL()
 	//end of video 7
 }
 
+bool checkShaderStatus(GLuint shaderID)
+{
+    //start of lecture 16
+    GLuint compileStatus;
+    glGetShaderiv(shaderID,GL_COMPILE_STATUS,&compileStatus);
+    //it means that the last argument could be the index vector as compileStatus[10];(4:15)
+    //when we talk about array in OpenGL->it means list of sequence of int (4:21)
+    if(compileStatus!=GL_TRUE)//4:51
+    {
+    	GLint infologLength;
+        glGetshaderiv(shaderID,GL_INFO_LOG_LENGTH,&infologLength); //lecture 16->6:25
+        GLchar *buffer=new GLchar[infologLength];
+
+        GLsizei buffersize;
+        glGetShaderInfoLog(shaderID,infologLength,&buffersize,buffer);//Lecture 16->8:51
+        std::cout<<"buffer is"<<buffer<<endl;//Lecture 16->9:48
+
+        delete [] buffer;
+        return false;
+    }
+    return true;
+    //end of lecture 16
+}
+
 void installShader()
 {
    //lec12
@@ -124,7 +148,7 @@ void installShader()
    */
 	GLuint vertexShaderID=glCreateShader("GL_VERTEX_SHADER");
 	GLuint fragmentShaderID=glCreateShader("GL_FRAGMENT_SHADER");
-    const char* adapter[1];
+    const GLchar* adapter[1];
     adapter[0]=vertexShaderCode;
 	glShaderSource(vertexShaderID,1,adapter,0);
 	adapter[0]=fragmentShaderID;
@@ -132,14 +156,23 @@ void installShader()
 
     glCompileShader(vertexShaderID);
     glCompileShader(fragmentShaderID);
+    
+    if(!checkShaderStatus(vertexShaderID)||!checkShaderStatus(fragmentShaderID))
+    {
+    	return;
+    }
 
     GLuint programID=glCreateProgram();
     glAttachShader(programID,vertexShaderID);
     glAttachShader(programID,fragmentShaderID);
+
+    //end of lecture 16
     gllinkProgram(programID);
 
     glUseProgram(programID);
 }
+
+
 
 void MeGlwindow::initalizaeGL()
 {

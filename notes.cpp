@@ -49,3 +49,8 @@
 -GLuint vertexShaderID is like a handler. Treat them as pointer of an object (01:56)
 -think them as OO programming (6:33)
 |*/
+
+/*Lecture 16
+-when we use glCompileShader, we want to see the error message (1:16)
+-Need to check if coppile works (1:26)
+*/
