@@ -116,6 +116,35 @@ void sendDataToOpenGL()
 	//end of video 7
 }
 
+bool checkStatus(GLunit objectID,
+	             PFNGLGETSHADERIVPROC objectProperyGetterFunc,
+	             PFNGLGETSHADERINFOLOGPROC getInfoLogFunc
+	             GLenum statusType)
+{
+	//start of letcture 17->3:58
+	//PFNGLGETSHADERIVPROC(Lecture 17->5:13)
+	//functio pointer->http://www-ee.eng.hawaii.edu/~tep/EE160/Book/chap14/section2.1.3.html
+	//Lecture 17->6:15->6:44
+    GLuint status;
+    objectProperyGetterFunc(objectID,statusType,&status);
+    //it means that the last argument could be the index vector as status[10];(4:15)
+    //when we talk about array in OpenGL->it means list of sequence of int (4:21)
+    if(status!=GL_TRUE)//4:51
+    {
+    	GLint infologLength;
+        objectProperyGetterFunc(objectID,GL_INFO_LOG_LENGTH,&infologLength); //lecture 16->6:25
+        GLchar *buffer=new GLchar[infologLength];
+
+        GLsizei buffersize;
+        getInfoLogFunc(objectID,infologLength,&buffersize,buffer);//Lecture 16->8:51
+        std::cout<<"buffer is"<<buffer<<endl;//Lecture 16->9:48
+
+        delete [] buffer;
+        return false;
+    }
+    return true;
+}
+
 bool checkShaderStatus(GLuint shaderID)
 {
     //start of lecture 16
@@ -138,7 +167,38 @@ bool checkShaderStatus(GLuint shaderID)
     }
     return true;
     //end of lecture 16
+
+   //return checkStatus(shaderID,glGetshaderiv,glGetShaderInfoLog,GL_COMPILE_STATUS);
 }
+
+bool checkProgramStatus(GLuint programID)
+{
+    //start of lecture 17
+    GLuint linkStatus;
+    glGetProgramiv(programID,GL_LINK_STATUS,&linkStatus);
+
+    //it means that the last argument could be the index vector as linkStatus[10];(4:15)
+    //when we talk about array in OpenGL->it means list of sequence of int (4:21)
+    if(linkStatus!=GL_TRUE)//4:51
+    {
+    	GLint infologLength;
+        glGetProgramiv(programID,GL_INFO_LOG_LENGTH,&infologLength); //lecture 16->6:25
+        GLchar *buffer=new GLchar[infologLength];
+
+        GLsizei buffersize;
+        glGetProgramInfoLog(programID,infologLength,&buffersize,buffer);//Lecture 16->8:51
+        std::cout<<"buffer is"<<buffer<<endl;//Lecture 16->9:48
+
+        delete [] buffer;
+        return false;
+    }
+    return true;
+    //end of lecture 17
+    //return checkStatus(shaderID,glGetProgramiv,glGetProgramInfoLog,GL_LINK_STATUS);
+
+}
+
+
 
 void installShader()
 {
@@ -163,11 +223,17 @@ void installShader()
     }
 
     GLuint programID=glCreateProgram();
-    glAttachShader(programID,vertexShaderID);
-    glAttachShader(programID,fragmentShaderID);
+    //Lecture 17:Comment the following two causes linking error (0:14)
+    //glAttachShader(programID,vertexShaderID);
+    //glAttachShader(programID,fragmentShaderID);
 
     //end of lecture 16
     gllinkProgram(programID);
+
+    if(!checkProgramStatus(programID)) //Lecture 17->2:07
+    {
+        return;
+    }
 
     glUseProgram(programID);
 }
