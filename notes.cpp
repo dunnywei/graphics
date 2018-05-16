@@ -54,3 +54,8 @@
 -when we use glCompileShader, we want to see the error message (1:16)
 -Need to check if coppile works (1:26)
 */
+
+/*Lecture 18
+-raadShaderCode(""); (1:37)(1:49)
+
+*/

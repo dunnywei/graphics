@@ -1,4 +1,6 @@
 #include <GL\glew.h>
+#include <iostream>
+#include <fstream>
 #include <QtOpenGl\qglwidget>
 #include "MEGWindow.h"
 
@@ -198,6 +200,19 @@ bool checkProgramStatus(GLuint programID)
 
 }
 
+std::string readShaderCode(const char* fileName)
+{
+   ifstream meInput(fileName);
+   if(!meInput.good())
+   {
+   	 std::cout<<"load file fail"<<fileName<<std::endl; //Lecture 16->03:21
+   	 exit(1);
+   }
+   
+   return std::string(
+      std::istreambuf_iterator<char>(meInput),
+      std::istreambuf_iterator<char>());//Lecture 16->06:53
+}
 
 
 void installShader()
@@ -209,9 +224,18 @@ void installShader()
 	GLuint vertexShaderID=glCreateShader("GL_VERTEX_SHADER");
 	GLuint fragmentShaderID=glCreateShader("GL_FRAGMENT_SHADER");
     const GLchar* adapter[1];
-    adapter[0]=vertexShaderCode;
+    //adapter[0]=vertexShaderCode;
+    std::string temp=readShaderCode("VertexShaderCode.glsl");
+    adapter[0]=temp.c_str();//Lecture 16->05:00->starts here
+
+
 	glShaderSource(vertexShaderID,1,adapter,0);
-	adapter[0]=fragmentShaderID;
+
+    temp=readShaderCode("FragmentShaderCode.glsl");
+    adapter[0]=temp.c_str();
+
+	//adapter[0]=fragmentShaderID;
+
 	glShaderSource(fragmentShaderID,1,adapter,0);
 
     glCompileShader(vertexShaderID);
