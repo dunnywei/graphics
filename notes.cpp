@@ -59,3 +59,21 @@
 -raadShaderCode(""); (1:37)(1:49)
 
 */
+
+/*Lecture 19_OpenGL Fragment vs Pixel
+-Fragment=potential pixel (0:23)
+-fragment shader kicks out a RGBA value (0:37). This value may not be necessary shown up on the screen as a pixel(0:39)(0:41)
+-Think fragment as a caterpillars and may potenally become a butterfy (0:51) if it succeeds (2:02)
+-Output as a RGBA value but doesn't mean it is a pixel (1:08)
+-draw red triangle then draw blue triangle. The red will overwrites blue when there is overlapping 
+Painter algorithm(2:17)
+-In order to have the red again. It required to draw red again (2:23)
+-We need to make sure the red precedence over the blue triangle (3:12)
+-Or red triangle is closer to the viewer than blue triangle (3:18)(3:24)
+-(3:40)The precedence of red over blue is that when the OpenGL try to draw red but see the blue,
+it will keep the red. Otherwise draw blue (4:16)
+-When OpenGL try to fill the blue pixels from RGB value from fragment shader (5:16), I can't
+draw you due to the red color has precedence over blue color (5:21)
+-Some of fragments become pixels (5:41) but not all of the do
+-the dpeth in OpenGL deals with the which color has the precedence (5:52)
+*/
