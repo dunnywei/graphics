@@ -7,6 +7,7 @@ out vec3 theColor;
 void main()
 {
    gl_Position=vec4(position,0.0,1.0);
+   //Lecture 20->specifiy the z value is always 0 (3:18)
    theColor=vertexColor;
    
 };

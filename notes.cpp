@@ -77,3 +77,60 @@ draw you due to the red color has precedence over blue color (5:21)
 -Some of fragments become pixels (5:41) but not all of the do
 -the dpeth in OpenGL deals with the which color has the precedence (5:52)
 */
+
+/*Lecture 20_OpenGL Depth Buffer
+->x from left to right
+->y from buttom to top
+->z axis (0:53), coming straight out of the screen as -ve, (going in to the screen is +ve)->important (1:08)
+->on Z axis the +1 is too far to see and -1 is too close to see(like clipping) (2:41)
+->The vertex with greater Z value is further away from us or camer (3:27) with more depth (3:30)
+->IF you are close to the camera or us you have less z value with less depth (3:37)
+->If I give the red triangle with less depth so it will be closer to the camera or scene. It will 
+be always on top of the blue triangle (3:56)
+->we need to cover buffer(4:05)
+->An image is a 2D array of pixels (4:08)
+->No matter if it is a 2D or 3D image, it is a 2D dimension array of pixel (4:20)
+->A pixel contains r,g,b values (4:24)
+->two dimension array of triangle (4:57)
+->We put the color including RGB into the buffer then dispalyed on the screen (6:03)
+->We also have to worry about is the depth buffer (6:08)
+->Dpeth buffer is also a 2D array (6:13) and storing one values (6:15). Dpeth of the
+fragment (6:22)
+->For example in both triangle, our case always make z=0 in vertex shader(6:28)(6:40)
+->It makes every z=0 in this scene (6:44)
+as 
+gl_Position=vec4(position,0.0,1.0);
+   //Lecture 20->specifiy the z value is always 0 (3:18)
+->The z value has nothing to do with position (6:50) will be shown up on the screen (6:52)
+->The only thing the OpenGL z value is used for (6:55) is the depth
+->x and y (6:59) determine the where vertex will be displayed on the screen (7:02) z-value
+determines the dpeth
+->In default, the depth buffer is not turned on (7:10)(7:31)
+->When we begin to render the scene, we want to make the farest depth (7:35)
+->So we make our depth as +1 as the farest depth (8:06)
+->When we try to render the scene, all of the RGB's color is 0 and we will try to clear out the buffer
+as well (8:27)
+->so we make 0,0,0 for RGB color (8:34)
+->The z value for red triangle (8:44) to -0.5 so it is closer to the screen
+->The z value for blue traingle (8:58) to +0.5 (9:02) so it is further to the screnn (9:05)
+->we try to render both triangles(9:13)
+->Red triangle will be rendered first (9:16)
+->let's us pick the center. Now it is 000 in RGB befoe rendering red (9:26)
+->Now it is 100 in RGB while rendering red(9:37).It is a fragment having a potential to
+become pixel (9:41) 
+->what's the depth of this fragment(9:46)? OpenGL looks at three vertices make the
+triangle(9:49) then interpret the z depth(9:51) as three vertrices (9:54)
+->since z value is for red triangle is 0.5 (10:02) so all the fragment inside the red triangle
+has to be -0.5 as well (10:05)
+-> hardware will do this so hardare takes the z value as -0.5 (10:12) and compare with the(10:21)
+value stored in the depth buffer as 1.
+-> since value -.5 is closer to the screen than the value 1 so it passed the test and become
+pixel (10:40)
+->so at the end. It will change the center from value of 000 to 100 with z=-0.5(10:58)(10:10)
+->it will apply to all of the fragment with its assocaited depth (11:37)
+->let's render the blue triangle (11:58)
+->We need to set the color as 001 for RGB (12:21) with depth value 0.5
+->We need to write the color buffer as 001 for RGB in color buffer (12:39)
+->since the .5 > -0.5 so the fragment can't be dispalyed as pixel (12:54) since it fails
+the depth test (13:09) 
+*/
