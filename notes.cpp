@@ -134,3 +134,34 @@ pixel (10:40)
 ->since the .5 > -0.5 so the fragment can't be dispalyed as pixel (12:54) since it fails
 the depth test (13:09) 
 */
+
+/*
+ *Lecture_21->OpenGL glEnable Depth Test
+->after enabling glEnable(GL_DEPTH_TEST);
+->After we paint,we need to clear the buffer for the farest value(1:20) that we(OpenGL) are
+interested in (1:23) by glclear(GL_DEPTH_BUFFER_BIT);
+->we render the red triangle first (2:26)
+->Buffer is a 2-D array (2:34)
+->Let's examine one fragment and one pixel (2:42)
+->Color buffer (BF) and Death buffer (DB) (2:51)
+->clearDepthBUfer->DB is set to 1(2:56)
+->Render out the triangle (3:01)
+->z postion for every vertex is 0 (3:22) from the statement of 
+gl_position=vec4(position,0.0,1.0); in VertexShaderCode.glsl
+->So in RGB will be 100 (3:36) for fragment. The depth buffer in Z position is 0 (3:50)
+->so the hardware will check does z-value=0 less than 1 (3:59) since the answer is YES (4:13)
+-> Therefore, the z-value will be updated as 0 (4:15) and the RGB value with 100 will 
+become the pixel(4:22) into the color buffer (4:29)
+->Then we render the blue triangle (4:47)
+->The blue fragment is 001 in RGB (4:52)
+->the depth is at 0.0 as well as (5:11) 
+l_position=vec4(position,0.0,1.0);
+->change the z value of vertex (6:10)
+->change in GLfloat verts[] (6:56)
+->change to glVertexAttribPointer for both glEnableVertexAttribArray(0); and glEnableVertexAttribArray(1);
+->(7:38)
+->change "in layout(location=0) vec2 position;" to "in layout(location=0) vec3 position;" in
+VertexShader.glsl
+->change "gl_Position=vec4(position,1.0);"
+
+*/

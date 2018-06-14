@@ -15,6 +15,8 @@ MeGlwindow::MeGlwindow(MeGlwindow *parent) :QGLWidget(parent)
 
 void sendDataToOpenGL()
 {
+    const float RED_TRIANGLE_Z=-0.5f;
+    const float BLUE_TRIANGLE_Z=+0.5f;
 
 	GLfloat verts[]=
 	{
@@ -52,21 +54,21 @@ void sendDataToOpenGL()
         /*
         */
         //Start of video 7
-         -1.0f,-1.0f,//0
+         -1.0f,-1.0f,RED_TRIANGLE_Z,//0
         +1.0f,+0.0f,+0.0f, //For 3 vertex's color in RGB lec 9  
-        +0.0f,+1.0f,//1
+        +0.0f,+1.0f,RED_TRIANGLE_Z,//1
         +1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
-        +1.0f,-1.0f,//2
+        +1.0f,-1.0f,RED_TRIANGLE_Z,//2
         +1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
 
 
-        -1.0f, +1.0f, //3
+        -1.0f, +1.0f,BLUE_TRIANGLE_Z, //3
         +1.0f,+0.0f,+1.0f, //For 0 vertex's color in RGB lec 9
         
-        +0.0f,-1.0f,//4
+        +0.0f,-1.0f,BLUE_TRIANGLE_Z,//4
         +1.0f,+0.0f,+1.0f, //For 3 vertex's color in RGB lec 9  
         
-        +1.0f,+1.0f,//5
+        +1.0f,+1.0f,BLUE_TRIANGLE_Z,//5
         +1.0f,+0.0f,+1.0f, //For 4 vertex's color in RGB lec 9
 
         //So 0|1|2 makes 1st triangle and 0|3|4 make 2nd triangle
@@ -103,15 +105,15 @@ void sendDataToOpenGL()
                           0);
     */
     glVertexAttribPointer(0, 
-                          2, //Two floating points make one vetrices 
+                          3, //Two floating points make one vetrices 
                           GL_FLOAT,
                           GL_FALSE,//normalized
-                          sizeof(float)*5,//strides->distance. of the 0 vertex to 1 vertex 
+                          sizeof(float)*6,//strides->distance. of the 0 vertex to 1 vertex 
                           0);//lecture 9(04:34),byte offset from the beginning of the buffer
                              //since verts[] starts at the beginning of the array (5:52)
 
 	glEnableVertexAttribArray(1);//second attribute, color lecture 9(6:13)
-	glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,sizeof(float)*5,(char*)(sizeof(float)*2);//->Lecture 9(6:44)
+	glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,sizeof(float)*6,(char*)(sizeof(float)*3);//->Lecture 9(6:44)
 
 
     Glushort indices[]= {0,1,2,3,4,5};
@@ -276,6 +278,7 @@ void MeGlwindow::initalizaeGL()
 {
 	
 	glewInit();
+	glEnable(GL_DEPTH_TEST);
     sendDataToOpenGL();
 	installShader();
 
@@ -283,6 +286,7 @@ void MeGlwindow::initalizaeGL()
 }
 void MeGlwindow::paintGL()
 {
+	glclear(GL_DEPTH_BUFFER_BIT);
 	QSize viewport_size = size();
 	glViewport(0, 0, viewport_size.width(), viewport_size.height());
 
