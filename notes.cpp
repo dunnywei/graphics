@@ -186,7 +186,13 @@ another interpolation occurs between midddle blue and top red
 ->all blue triangle is at -0.5 in Z depth (5:05)
 ->all red triangles are at z=0.5 except the top at z=-1.0 (5:05)
 ->The top one is close to the camera (5:11)
-->When we move down from th top, z value becomes larger and larger (5:16)
-
+->When we move down from th top, z value becomes larger and larger (5:16) or think as it gets
+further into the scene (5:21)
+->All the sudden at the sweet spot (9:39), Z_value_blue fragment < Z_value_red fragment (5:30)
+->what happen if I change the color of vertex at top to blue (6:42) 
+->we will see the blending of the color or interpolation between the top and sweet spot. Between them
+,there are still a lot of blue(7:23), more blue than red (7:28). Unitl we hit the sweet spot, red start
+to win (7:43). See the left half of the red triangle (7:43)
+->vertex shader to fragment shader, hadware do some interpolation (7:56)
  
 */

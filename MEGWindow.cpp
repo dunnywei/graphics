@@ -58,7 +58,9 @@ void sendDataToOpenGL()
         +1.0f,+0.0f,+0.0f, //For 3 vertex's color in RGB lec 9  
         +0.0f,+1.0f,-1.0f,//1
         //+0.0f,+1.0f,RED_TRIANGLE_Z,//1
-        +1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
+        +0.0f,+0.0f,+1.0f, //For 4 vertex's color in RGB lec 9
+        //+1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
+
         +1.0f,-1.0f,RED_TRIANGLE_Z,//2
         +1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
 
