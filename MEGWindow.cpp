@@ -15,8 +15,8 @@ MeGlwindow::MeGlwindow(MeGlwindow *parent) :QGLWidget(parent)
 
 void sendDataToOpenGL()
 {
-    const float RED_TRIANGLE_Z=-0.5f;
-    const float BLUE_TRIANGLE_Z=+0.5f;
+    const float RED_TRIANGLE_Z=+0.5f;
+    const float BLUE_TRIANGLE_Z=-0.5f;
 
 	GLfloat verts[]=
 	{
@@ -56,7 +56,8 @@ void sendDataToOpenGL()
         //Start of video 7
          -1.0f,-1.0f,RED_TRIANGLE_Z,//0
         +1.0f,+0.0f,+0.0f, //For 3 vertex's color in RGB lec 9  
-        +0.0f,+1.0f,RED_TRIANGLE_Z,//1
+        +0.0f,+1.0f,-1.0f,//1
+        //+0.0f,+1.0f,RED_TRIANGLE_Z,//1
         +1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
         +1.0f,-1.0f,RED_TRIANGLE_Z,//2
         +1.0f,+0.0f,+0.0f, //For 4 vertex's color in RGB lec 9
@@ -293,7 +294,10 @@ void MeGlwindow::paintGL()
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
 	//start of video 7
 	//glDrawArrays(GL_TRIANGLES, 0, 6);//Every three vertices make triangle
+	
+	//glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0);
 	glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0);
+
     //end of video 7
 
 

@@ -145,7 +145,7 @@ interested in (1:23) by glclear(GL_DEPTH_BUFFER_BIT);
 ->Let's examine one fragment and one pixel (2:42)
 ->Color buffer (BF) and Death buffer (DB) (2:51)
 ->clearDepthBUfer->DB is set to 1(2:56)
-->Render out the triangle (3:01)
+->Render out the triangle (3:0 *1)
 ->z postion for every vertex is 0 (3:22) from the statement of 
 gl_position=vec4(position,0.0,1.0); in VertexShaderCode.glsl
 ->So in RGB will be 100 (3:36) for fragment. The depth buffer in Z position is 0 (3:50)
@@ -164,4 +164,29 @@ l_position=vec4(position,0.0,1.0);
 VertexShader.glsl
 ->change "gl_Position=vec4(position,1.0);"
 
+*/
+
+/*
+ *Lecture_22->OpenGL Depth Interpolation
+ ->Range -1(Closer) to 1(further) for z value (0:24)
+ ->change to     (0:37)
+ glDrawElements(GL_TRIANGLES,3,GL_UNSIGNED_SHORT,0);
+ ->what will happen if we set the  (1:06)
+ RED_TRIANGLE_Z=1.0f
+->what we are going to see is that black screen since when we clear the depth buffer, we clear all
+the values to 1 (1:22).
+->every vertex fails the depth test (1:28)since All the RED_TRIANGLE_Z is 1(1:30)
+->If we set the RED_TRIANGLE_Z=-1.01 (2:40),red triangle is gone  (2:43)
+->The reason is that it is behind the camera (2:53) so OPENGL won't render (2:53)
+->Let's change to and RED_TRIANGLE_Z=+0.5f;     const float BLUE_TRIANGLE_Z=-0.5f;
+and glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0); (3:07) so blue is on top of the red (3:13)
+->change +0.0f,+1.0f,RED_TRIANGLE_Z to +0.0f,+1.0f,-1.0f->what will happen (3:53)(3:57)
+->My guess is the interpolation occurs between the buttom red, middle blue, top red. There will be
+another interpolation occurs between midddle blue and top red
+->all blue triangle is at -0.5 in Z depth (5:05)
+->all red triangles are at z=0.5 except the top at z=-1.0 (5:05)
+->The top one is close to the camera (5:11)
+->When we move down from th top, z value becomes larger and larger (5:16)
+
+ 
 */
