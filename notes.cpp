@@ -194,5 +194,8 @@ further into the scene (5:21)
 ,there are still a lot of blue(7:23), more blue than red (7:28). Unitl we hit the sweet spot, red start
 to win (7:43). See the left half of the red triangle (7:43)
 ->vertex shader to fragment shader, hadware do some interpolation (7:56)
+->We see the interpolation of the color again (8:05)
+->we can also see the interpolation of the z value (8:11)
+->
  
 */
