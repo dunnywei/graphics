@@ -200,7 +200,14 @@ to win (7:43). See the left half of the red triangle (7:43)
 as (+0.0f,+1.0f,-1.0f) but they give further and further away since Z value becomes larger as we move down 
 due to +1.0f,-1.0f,RED_TRIANGLE_Z as RED_TRIANGLE_Z=+0.5f at buttom right
 (8:17)
-->as we can see, the color change from blue to red(8:21)
+->as we can see, the z-depth buffer correlates with the color change from blue to red(8:21)
 ->Righ here where we cross the sweet spot (8:39)
-->
+->Therefore, we will see more red (8:40)
+-1/3 of triangle since for the red triangle I have top one is blue and 
+buttom left and buttom right are red (9:03)
+-(comments from other)
+-at 8:30, you were explaining about why the sweet spot is not at the center. 
+I think is it because the bottom two red vertices depth is +0.5. 
+Changing the depth to +0.0,   you will get the desired result.
+
 */
