@@ -196,7 +196,8 @@ to win (7:43). See the left half of the red triangle (7:43)
 ->vertex shader to fragment shader, hadware do some interpolation (7:56)
 ->We see the interpolation of the color again (8:05)
 ->we can also see the interpolation of the z value (8:11)
-->The z value of the red triangle is closer to the viewer but they give further and further away(8:17)
+->The z value of the red triangle is closer to the viewer but they give further and further away
+since Z value becomes larger and larger(8:17)
 ->as we can see, the color change from blue to red(8:21)
 ->Righ here where we cross the sweet spot (9:39)
 ->
