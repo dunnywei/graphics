@@ -211,3 +211,11 @@ I think is it because the bottom two red vertices depth is +0.5.
 Changing the depth to +0.0,   you will get the desired result.
 
 */
+
+/*
+ *Lecture_23->OpenGL Sending Triangles in Parts Using glBufferSubData
+ ->Color buffer is two dimension array (00:11) of pixels for RGB and alpha(ignore for now)
+ ->GPU is used To filling these color buffers
+ ->writie some codes and witness some behavior (00:53)
+
+*/
