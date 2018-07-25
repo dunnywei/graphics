@@ -217,5 +217,17 @@ Changing the depth to +0.0,   you will get the desired result.
  ->Color buffer is two dimension array (00:11) of pixels for RGB and alpha(ignore for now)
  ->GPU is used To filling these color buffers
  ->writie some codes and witness some behavior (00:53)
-
+ ->Every new frame, add new triangle on the screen (2:07
+ ->deleting code (2:07) to (2:56)
+ ->When we generte a buffer object (2:54), it only tells the property about the buffer.
+ It doesnèt store the data (3:01)
+ ->The data is store in the buffer in an array of butes (3:06) in GPU and maintained by OpenGL
+ (3:10)
+ ->The buffer objects keep track of the buffer (3:14)
+ ->If we want to add multi triangle for multi frames , we need to take different approach
+ on our buffer objects (3:30)
+ ->change the code to
+ glBufferData(GL_ARRAY_BUFFER, 10000, verts, GL_STATIC_DRAW);
+(3:40)
+->
 */
