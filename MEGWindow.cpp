@@ -37,7 +37,7 @@ void sendDataToOpenGL()
 	glGenBuffers(1, &vertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-	glBufferData(GL_ARRAY_BUFFER, 10000, verts, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 10000, NULL, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);//first attribute, position
 	/*

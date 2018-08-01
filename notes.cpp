@@ -227,7 +227,12 @@ Changing the depth to +0.0,   you will get the desired result.
  ->If we want to add multi triangle for multi frames , we need to take different approach
  on our buffer objects (3:30)
  ->change the code to
- glBufferData(GL_ARRAY_BUFFER, 10000, verts, GL_STATIC_DRAW);
-(3:40)
+ glBufferData(GL_ARRAY_BUFFER, 10000, NULL, GL_STATIC_DRAW);
+(3:40)(4:04)
+->OpenGL sees that we are passing pointer to the NULL data (4:04)
+->So you don't have any data for me to copy (4:07), I will still allocate 1000 bytes (4:10)
+-It is up to the progrmmer to fill the byte (4:13)
+->everytime when I paint, I want to add a triangle (4:21)(4:27)
+->Under PaintGL(), we will modify it so it will add a triangle everytime (4:42)
 ->
 */
