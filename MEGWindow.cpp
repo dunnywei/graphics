@@ -7,6 +7,7 @@
 extern const char* vertexShaderCode;
 extern const char* fragmentShaderCode;
 
+const float X_DELTA=0.1;
 MeGlwindow::MeGlwindow(MeGlwindow *parent) :QGLWidget(parent)
 {
 	swapBuffers();
@@ -219,6 +220,11 @@ void MeGlwindow::initalizaeGL()
 
 
 }
+
+void sendAnotherTriToOpenGL()
+{
+
+}
 void MeGlwindow::paintGL()
 {
 	glclear(GL_DEPTH_BUFFER_BIT);
@@ -230,7 +236,7 @@ void MeGlwindow::paintGL()
 	//glDrawArrays(GL_TRIANGLES, 0, 6);//Every three vertices make triangle
 	
 	//glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0);
-	glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0);
+	sendAnotherTriToOpenGL();
 	glDrawArrays()
 
     //end of video 7

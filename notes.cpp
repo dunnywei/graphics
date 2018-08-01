@@ -234,5 +234,6 @@ Changing the depth to +0.0,   you will get the desired result.
 -It is up to the progrmmer to fill the byte (4:13)
 ->everytime when I paint, I want to add a triangle (4:21)(4:27)
 ->Under PaintGL(), we will modify it so it will add a triangle everytime (4:42)
-->
+->add function of "sendAnotherTriToOpenGL()" (5:03)
+->Declare "const float X_DELTA=0.1;" (7:24)
 */
