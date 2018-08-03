@@ -221,7 +221,7 @@ Changing the depth to +0.0,   you will get the desired result.
  ->deleting code (2:07) to (2:56)
  ->When we generte a buffer object (2:54), it only tells the property about the buffer.
  It doesnèt store the data (3:01)
- ->The data is store in the buffer in an array of butes (3:06) in GPU and maintained by OpenGL
+ ->The data is store in the buffer of an array of bytes (3:06) in GPU and maintained by OpenGL
  (3:10)
  ->The buffer objects keep track of the buffer (3:14)
  ->If we want to add multi triangle for multi frames , we need to take different approach
@@ -236,4 +236,7 @@ Changing the depth to +0.0,   you will get the desired result.
 ->Under PaintGL(), we will modify it so it will add a triangle everytime (4:42)
 ->add function of "sendAnotherTriToOpenGL()" (5:03)
 ->Declare "const float X_DELTA=0.1;" (7:24)
-*/
+->everytime when we draw a new triangle, we will move to the right one (7:30)
+->declare "uint numTris=0;" (7:43)
+->we will have 3 vertices and 6 attributes per vertices (8:38)
+->modify "sendAnotherTriToOpenGL()" (8:10)

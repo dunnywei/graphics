@@ -8,6 +8,7 @@ extern const char* vertexShaderCode;
 extern const char* fragmentShaderCode;
 
 const float X_DELTA=0.1;
+uint numTris=0;
 MeGlwindow::MeGlwindow(MeGlwindow *parent) :QGLWidget(parent)
 {
 	swapBuffers();
@@ -223,7 +224,18 @@ void MeGlwindow::initalizaeGL()
 
 void sendAnotherTriToOpenGL()
 {
+   //Lecture 23->(8:10)
+   GL_FLOAT thisTri[]=
+   {
+      0.0f,0.0f,0.0f,
+      1.0f,0.0f,0.0f,
 
+      0.0f,0.0f,0.0f,
+      1.0f,0.0f,0.0f,
+
+      0.0f,0.0f,0.0f,
+      1.0f,0.0f,0.0f,
+   };
 }
 void MeGlwindow::paintGL()
 {
