@@ -225,10 +225,11 @@ void MeGlwindow::initalizaeGL()
 void sendAnotherTriToOpenGL()
 {
    //Lecture 23->(8:10)
+	const GL_FLOAT THIS_TRI_X=-1+numTris*X_DELTA; 
    GL_FLOAT thisTri[]=
    {
-      0.0f,0.0f,0.0f,
-      1.0f,0.0f,0.0f,
+      0.0f,0.0f,0.0f,//position
+      1.0f,0.0f,0.0f,//color
 
       0.0f,0.0f,0.0f,
       1.0f,0.0f,0.0f,

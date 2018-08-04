@@ -240,3 +240,5 @@ Changing the depth to +0.0,   you will get the desired result.
 ->declare "uint numTris=0;" (7:43)
 ->we will have 3 vertices and 6 attributes per vertices (8:38)
 ->modify "sendAnotherTriToOpenGL()" (8:10)
+->add "     const GL_FLOAT THIS_TRI_X=-1+numTris*X_DELTA;  " (10:21)
+->
