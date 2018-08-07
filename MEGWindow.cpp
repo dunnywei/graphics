@@ -8,6 +8,10 @@ extern const char* vertexShaderCode;
 extern const char* fragmentShaderCode;
 
 const float X_DELTA=0.1;
+const unit NUM_VERTICES_PER_TRI=3;
+const unit NUM_FLOATS_PER_VERTICE=6;
+const unit TRIANGLE_BYTE_SIZE=NUM_VERTICES_PER_TRI*NUM_FLOATS_PER_VERTICE*sizeof(float);
+const unit MAX_TRIS=20;
 uint numTris=0;
 MeGlwindow::MeGlwindow(MeGlwindow *parent) :QGLWidget(parent)
 {
@@ -39,7 +43,7 @@ void sendDataToOpenGL()
 	glGenBuffers(1, &vertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-	glBufferData(GL_ARRAY_BUFFER, 10000, NULL, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, MAX_TRIS*TRIANGLE_BYTE_SIZE, NULL, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);//first attribute, position
 	/*
@@ -225,6 +229,8 @@ void MeGlwindow::initalizaeGL()
 void sendAnotherTriToOpenGL()
 {
    //Lecture 23->(8:10)
+   if(numTris==MAX_TRIS)
+      return;//not sending anything
    const GL_FLOAT THIS_TRI_X=-1+numTris*X_DELTA; 
    GL_FLOAT thisTri[]=
    {
@@ -238,7 +244,8 @@ void sendAnotherTriToOpenGL()
       1.0f,0.0f,0.0f,
    };
 
-   glBufferSubData(GL_ARRAY_BUFFER,)
+   glBufferSubData(GL_ARRAY_BUFFER,numTris*TRIANGLE_BYTE_SIZE,TRIANGLE_BYTE_SIZE,thisTri);
+   numTris++;
 }
 void MeGlwindow::paintGL()
 {
@@ -252,7 +259,7 @@ void MeGlwindow::paintGL()
 	
 	//glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0);
 	sendAnotherTriToOpenGL();
-	glDrawArrays()
+	//glDrawArrays()
 
     //end of video 7
 

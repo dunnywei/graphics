@@ -244,5 +244,28 @@ Changing the depth to +0.0,   you will get the desired result.
 ->in the function of glBufferSubData (11:46), the offset relates to the buffer array(11:45)
     -we have 1000 byte
     -a triangle has 3 vertices (12:35)
-    -
+    -How large is the vertices? (12:37) There are 6 elements in the vertices (12:46)
+    -THREE vertices * SIX float per vertices*sizeof(float) (12:57)(13:11)
+    -creat three variables (14:06)(14:43)
+        -const unit NUM_VERTICES_PER_TRI=3;
+        -const unit NUM_FLOATS_PER_VERTICE=6;
+        -const unit TRIANGLE_BYTE_SIZE=NUM_VERTICES_PER_TRI*NUM_FLOATS_PER_VERTICE*sizeof(float);
+    - add (15:24)
+      glBufferSubData(GL_ARRAY_BUFFER,numTris*TRIANGLE_BYTE_SIZE,TRIANGLE_BYTE_SIZE,thisTri);
+    -add (15:30)
+       numTris++;
+    -modify paintGL by adding sendAnotherTriToOpenGL(); (15:49)
+->Debug and step through it (16:16)
+->First triangle takes/occupies 72 bytes (16:31) since size of float is 4 byte
+->Next triangle takes another 72 bytes(17:21)
+->change (18:06)   
+  glBufferData(GL_ARRAY_BUFFER, MAX_TRIS*TRIANGLE_BYTE_SIZE, NULL, GL_STATIC_DRAW);
+  ->change in sendAnotherTriToOpenGL (18:20)
+    if(numTris==MAX_TRIS)
+      return;//not sending anything
+->
+
+
+
+
 ->
