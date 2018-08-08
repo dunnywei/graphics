@@ -244,7 +244,8 @@ void sendAnotherTriToOpenGL()
       1.0f,0.0f,0.0f,
    };
 
-   glBufferSubData(GL_ARRAY_BUFFER,numTris*TRIANGLE_BYTE_SIZE,TRIANGLE_BYTE_SIZE,thisTri);
+   glBufferSubData(GL_ARRAY_BUFFER,
+   	numTris*TRIANGLE_BYTE_SIZE,TRIANGLE_BYTE_SIZE,thisTri);
    numTris++;
 }
 void MeGlwindow::paintGL()
@@ -259,9 +260,10 @@ void MeGlwindow::paintGL()
 	
 	//glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,0);
 	sendAnotherTriToOpenGL();
-	//glDrawArrays()
+	//glDrawArrays(GL_TRIANGLES,0,numTris*NUM_VERTICES_PER_TRI);
+	//glDrawArrays(GL_TRIANGLES,(numTris-1)*NUM_VERTICES_PER_TRI,numTris*NUM_VERTICES_PER_TRI);
+	glDrawArrays(GL_TRIANGLES,(numTris-1)*NUM_VERTICES_PER_TRI,NUM_VERTICES_PER_TRI);
 
-    //end of video 7
 
 
 	

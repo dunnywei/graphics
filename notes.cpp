@@ -265,6 +265,30 @@ Changing the depth to +0.0,   you will get the desired result.
       return;//not sending anything
 ->
 
+/*
+ *Lecture 24_OpenGL Color Buffer
+->The first parameter means every three vertices make the triangle (1:08)
+    glDrawArrays(GL_TRIANGLES,0,numTris*NUM_VERTICES_PER_TRI);
+->The second paramter (mode) means we want to draw at the first one as 0 (1:23). It 
+represetns which vertices you want to start out at(2:02)
+->count here(the third paramter) is (1:25) the number of vertices we wish
+ to render (1:35)
+->If we use GL_LINES, lines will have two vertices NOT three vertices (1:51)
+        glDrawArrays(GL_LINES,0,numTris*NUM_VERTICES_PER_TRI);
+->repainting it (2:10) to (2:18)
+->Think about it and witness the behavior (2:36)
+-I want to draw the latest triangle (2:58) and no other triangle (3:00).
+-(3:00) to (3:29) elaboration
+    glDrawArrays(GL_TRIANGLES,(numTris-1)*NUM_VERTICES_PER_TRI,NUM_VERTICES_PER_TRI);
+   -I want to have (numTris-1) (3:45) as the last one (3:50)
+   -When numTris=2, it will offset us and pass the first three vertices and go the the 2nd one(4:04)
+   -We change the last parameter since we don't want to draw the full buffer. We only want to draw
+   the last three three vertrices in one triangle (4:21)
+   -the result is that we have the double up (4:53)
+   -We have two color buffer. The front and back (5:27)
+
+
+*/
 
 
 
