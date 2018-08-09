@@ -286,6 +286,14 @@ represetns which vertices you want to start out at(2:02)
    the last three three vertrices in one triangle (4:21)
    -the result is that we have the double up (4:53)
    -We have two color buffer. The front and back (5:27)
+   -Qt swaps the buffer back and forth for us (5:31)
+   -The screen/monitor connects to the front buffer (5:45)
+   -When we render and change pixels, it is done in the BACK buffer. If we show it in front, users will notice
+   the densing of pixels. Therefore we don't want to show it (5:59)
+   - When we draw, it is done in the BACK buffer (6:06)
+   -Qt will automatically swap between the back buffer and the front buffer (6:25)
+   -Then we start drawing on the BACK BUFFER (6:43)
+   -
 
 
 */
