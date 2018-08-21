@@ -250,7 +250,9 @@ void sendAnotherTriToOpenGL()
 }
 void MeGlwindow::paintGL()
 {
-	glclear(GL_DEPTH_BUFFER_BIT);
+	//glclear(GL_DEPTH_BUFFER_BIT);
+	//glclear(GL_COLOR_BUFFER_BIT);
+	glclear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
 	QSize viewport_size = size();
 	glViewport(0, 0, viewport_size.width(), viewport_size.height());
 

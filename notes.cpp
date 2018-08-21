@@ -263,10 +263,10 @@ Changing the depth to +0.0,   you will get the desired result.
   ->change in sendAnotherTriToOpenGL (18:20)
     if(numTris==MAX_TRIS)
       return;//not sending anything
-->
+*/
+/*********************LEC 24**************************************************************************/
 
-/*
- *Lecture 24_OpenGL Color Buffer
+ Lecture 24_OpenGL Color Buffer
 ->The first parameter means every three vertices make the triangle (1:08)
     glDrawArrays(GL_TRIANGLES,0,numTris*NUM_VERTICES_PER_TRI);
 ->The second paramter (mode) means we want to draw at the first one as 0 (1:23). It 
@@ -288,16 +288,40 @@ represetns which vertices you want to start out at(2:02)
    -We have two color buffer. The front and back (5:27)
    -Qt swaps the buffer back and forth for us (5:31)
    -The screen/monitor connects to the front buffer (5:45)
-   -When we render and change pixels, it is done in the BACK buffer. If we show it in front, users will notice
-   the densing of pixels. Therefore we don't want to show it (5:59)
-   - When we draw, it is done in the BACK buffer (6:06)
+   -When we render and change pixels, it should be done in the BACK buffer. If we show it in front, users will notice
+   the densing of pixels since we are showing the process of rendering/changing pixel.
+    Therefore we don't want to show it (5:59)
+   - When we draw, it should done in the BACK buffer (6:06)
    -Qt will automatically swap between the back buffer and the front buffer (6:25)
    -Then we start drawing on the BACK BUFFER (6:43)
-   -
+   -This is one reason we see the duplicate triangle (6:49)
+   -They just swap back and forth (7:02)
+   -Why are the triangle drawing(7:10)?
+    -we get the buffer back and forth,but why do we get multiple triangles? (7:15)
+    -IN glDrawArrays(GL_TRIANGLES,(numTris-1)*NUM_VERTICES_PER_TRI,NUM_VERTICES_PER_TRI);
+       -do we draw one triangle? (7:21)
+       -Why we draw? When we draw, we draw on that buffer. Whateve we had there before is retained (7:33)
+       -old triangle is remained but the new triangle will be drawn on that buffer as well(7:50)
+       -The color buffer still maintained the old triangle (8:05)
+       -We add a new traignle everytime when we draw (8:07), the value in the triangle before the draw remain (8:14)
+       -This example demonstrate 1) the color buffer 2)Buffer swaping between front and back (8:31)
+       -In pervious example, we didn't change the buffer since we are drawinig the same thing everytime. We draw exact the same color as they have(8:48)from the last time we paint it(8:54)
+          -We are NOT changing anything (8:54)
+       -In tis example, I need to keep change what was inside the color buffer(9:00) inside the screen (9:02)
+    -The reason we clear the depth buffer is to set the depth back to 1 (9:16)
+    -If we don't clear the color buffer, whatever is there before will remain (9:25)
+    -There is one situation you don't need to do this. we are going to draw the entire buffer (9:35) For example in the FPS, when the draw the scene, they fill up (9:46) every single pixel on the screen(9:48)
+        - so they don't have to clear up the color buffer (9:50)
+    -add "glclear(GL_COLOR_BUFFER_BIT);" (10:16)
+    -We still have color buffer swapping but every buffer we used was clean it out  (10:31) then draw the triangle again (10:32)
+    -However "glclear(GL_COLOR_BUFFER_BIT);" is expensive (10:43)" we want to tell the hardware to clear all buffers at once (10:48)
+    -Ideally, when we ask the hardware to clear the buffer, we want to do it all in once(10:48)
+    - add  "glclear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT); (11:08)
+/*********************LEC 25**************************************************************************/
+Lecture 25_Model View Projection Matrices
 
 
-*/
 
 
 
-->
+->we are 
