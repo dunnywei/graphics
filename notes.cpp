@@ -320,7 +320,16 @@ represetns which vertices you want to start out at(2:02)
 /*********************LEC 25**************************************************************************/
 Lecture 25_Model View Projection Matrices
 
-
+-Want to draw/render 3D scene (0:13)
+-3D scene is still made up triangles (0:24). 3D triangle turn into 2D trianges(0:26) so we can draw 2D triangle (0:30)
+-When we render 3D scene, we render 2D triangles exactly the same (0:36) 
+-The back of the box is seems futher away than front one (1:01)
+-The back tuns to vanish (1:07). if the back is even much further, it will converge to a point (1:13)
+-Even though the box looks like 3D but we still draw 2D triangle (1:29)
+-At the end, maya needs to render 2D triangle (2:07)
+-whatever is closer to the camera will be closer than the one further away from the camera (2:28)
+-all calculation is in 3D but in the end render needs to convert everything from 3D to 2D (3:07)
+-Famous matrices Model, View, Projection (3:18)
 
 
 
