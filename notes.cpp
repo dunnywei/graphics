@@ -330,7 +330,42 @@ Lecture 25_Model View Projection Matrices
 -whatever is closer to the camera will be closer than the one further away from the camera (2:28)
 -all calculation is in 3D but in the end render needs to convert everything from 3D to 2D (3:07)
 -Famous matrices Model, View, Projection (3:18)
-
-
-
-->we are 
+-model to world
+-world to view
+-view to projection (3:42)
+-Projection take our world and squish it into 2D space (4:01) so we can render the scene
+-Game engine list for detail in matrices(5:01)
+-World is 10x10 matrices (5:21)
+-The world could be infinite in space (5:29)
+-Model to wrold translate matrices starts (7:04)
+    -Trnaslate->move the box into the world (7:46)
+    ->model to world tranlsate matrices ends (7:56)
+->world to our view matrices starts(7:31)
+    ->view is our camera looking into -ve z axis (9:37)
+    ->What it sees is what camera sees(10:16)
+    ->We won't see anything so we want to rotate the world so we can see (10:40)
+    ->In FPS game, what ever you are moving the wolrd->means the world woving around you (10:51)
+    ->So we need to combine "world to view matrices" with sphere/box (model to world matrix) (11:14)
+    ->where you want to put your eye w.r.t world coordinate (11:33)
+    ->What do you want to look at (11:35)
+    ->where you want to be up(11:37)
+    ->The camera is situated at orgin. I want to make the camera to look at -ve x-axis (12:15) instead of looking at
+    -ve z axis (12:32)
+    ->World is shifting (12:39)
+    ->World coordinate systme is red. Camera coordinate system is white (12:46)
+    ->looking at -ve 1.5 on Z and -ve 1.5 on x. This is where camera is looking (13:00)
+    ->I want to look at our shape (13:05) so we bring the z value down to zero (13:09)
+    ->The camera is stationary and world is moved (13:20)
+    ->Click "fix eye to camera" position, we should be able to see the sphere (13:30) look at -ve z axis
+    ->Box and Shpere have seperated "model to world" matrices (13:46) on left and middle
+    ->both of them share the same world to view matrices (13:54)
+ ->Now we need to talk about is "view to projection" matrix (14:06)
+    -Now our world is 3D scene (14:17)
+    -We need to take the entire scene in 3D then squish into 2D scene in front of camera (14:32) by flatterning
+    -get one point on the scene then squish it into 2D sace (14:42)(12:46)
+    -The "view to projection" matrix will be applied after "world to view" matrices (15:09)
+    -world will be smashed into 2D space (15:24)
+    -Convert 3D to 2D a.k.a representaton in math (15:39) for render 2D scene. It look really flat (15:44)
+    -
+/***************************Lec 25*******************************************************************/
+Lecture 26->Perspective Projection Matrix and Depth
