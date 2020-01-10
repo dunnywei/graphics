@@ -1,3 +1,6 @@
+->all video
+https://www.youtube.com/watch?v=6c1QYZAEP2M&list=PLRwVmtr-pp06qT6ckboaOhnm9FxmzHpbY
+
 /*
 		Lec 10(01:29)->Shader is a program executed on the graphic card
 		Currently, the foloinwg code is executed on the CPU
